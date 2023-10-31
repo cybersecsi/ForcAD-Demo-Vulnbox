@@ -14,14 +14,14 @@ jobs:
         with:
           type: "zip"
           filename: "checker.zip"
-          exclusions: "*.git* /*service/* README.md LICENSE"
+          exclusions: "*.git* /*service/* README.md LICENSE *.zip"
 
       - name: Archive Service
         uses: thedoctor0/zip-release@0.7.5
         with:
           type: "zip"
           filename: "service.zip"
-          exclusions: "*.git* /*checker/* README.md LICENSE"
+          exclusions: "*.git* /*checker/* README.md LICENSE *.zip"
 
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
