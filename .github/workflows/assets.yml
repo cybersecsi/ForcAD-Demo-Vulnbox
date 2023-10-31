@@ -26,7 +26,8 @@ jobs:
       - name: Upload Release
         uses: ncipollo/release-action@v1.12.0
         with:
-          artifacts: |
-            "release.zip"
-            "service.zip"
+          artifacts: "checker.zip,service.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  contents: write
