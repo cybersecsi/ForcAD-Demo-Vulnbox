@@ -8,17 +8,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Archive Release
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+
+      - name: Archive Checker
         uses: thedoctor0/zip-release@0.7.5
         with:
           type: "zip"
           filename: "checker.zip"
           exclusions: "*.git* /*service/* README.md LICENSE"
 
-      - uses: actions/checkout@master
-      - name: Archive Release
+      - name: Archive Service
         uses: thedoctor0/zip-release@0.7.5
         with:
           type: "zip"
           filename: "service.zip"
           exclusions: "*.git* /*checker/* README.md LICENSE"
+
+      - name: Upload Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          artifacts: |
+            "release.zip"
+            "service.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
