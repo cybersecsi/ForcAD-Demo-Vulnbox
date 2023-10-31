@@ -14,3 +14,11 @@ jobs:
           type: "zip"
           filename: "checker.zip"
           exclusions: "*.git* /*service/* README.md LICENSE"
+
+      - uses: actions/checkout@master
+      - name: Archive Release
+        uses: thedoctor0/zip-release@0.7.5
+        with:
+          type: "zip"
+          filename: "service.zip"
+          exclusions: "*.git* /*checker/* README.md LICENSE"
